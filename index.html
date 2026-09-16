@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bússola Papal — Um Exame de Eclesiologia</title>
+<meta name="description" content="Descubra sua posição no espectro teológico católico: Autoridade vs. Pastoralidade, Tradição vs. Reforma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Cinzel+Decorative:wght@700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="parchment-texture" aria-hidden="true"></div>
+
+<main id="app">
+
+  <!-- ===================== TELA 1 — INÍCIO ===================== -->
+  <section id="screen-start" class="screen is-active" aria-labelledby="start-title">
+    <div class="frame">
+      <div class="frame-corner tl" aria-hidden="true"></div>
+      <div class="frame-corner tr" aria-hidden="true"></div>
+      <div class="frame-corner bl" aria-hidden="true"></div>
+      <div class="frame-corner br" aria-hidden="true"></div>
+
+      <p class="eyebrow-seal" aria-hidden="true">✠</p>
+      <h1 id="start-title">Bússola&nbsp;Papal</h1>
+      <p class="subtitle">Onde repousa a sua eclesiologia?</p>
+
+      <div class="divider" aria-hidden="true"><span></span>✠<span></span></div>
+
+      <p class="lede">
+        Cinquenta proposições de teologia, liturgia e história eclesiástica —
+        do Syllabus de Pio&nbsp;IX às reformas do Vaticano&nbsp;II — vão posicionar
+        sua visão de mundo num plano de duas dimensões: quanto pesa a
+        <strong>Autoridade</strong> frente à <strong>Pastoralidade</strong>, e quanto
+        pesa a <strong>Tradição</strong> frente à <strong>Reforma</strong>.
+      </p>
+      <p class="lede">
+        Ao final, seu ponto será cruzado com quinze pontífices da história —
+        de Gregório&nbsp;VII a Francisco — para revelar qual deles mais se
+        aproxima do seu modo de pensar a Igreja.
+      </p>
+
+      <div class="axis-preview" aria-hidden="true">
+        <div class="axis-preview-row"><span class="tag tag-gold">AUTORIDADE</span><span class="axis-line"></span><span class="tag tag-crimson">PASTORALIDADE</span></div>
+        <div class="axis-preview-row"><span class="tag tag-ink">TRADIÇÃO</span><span class="axis-line"></span><span class="tag tag-ink">REFORMA</span></div>
+      </div>
+
+      <button id="btn-start" class="btn-primary" type="button">Iniciar o Exame</button>
+      <p class="fine-print">50 proposições · aproximadamente 8 minutos</p>
+    </div>
+  </section>
+
+  <!-- ===================== TELA 2 — QUIZ ===================== -->
+  <section id="screen-quiz" class="screen" aria-labelledby="q-text">
+    <div class="frame frame-quiz">
+      <div class="frame-corner tl" aria-hidden="true"></div>
+      <div class="frame-corner tr" aria-hidden="true"></div>
+      <div class="frame-corner bl" aria-hidden="true"></div>
+      <div class="frame-corner br" aria-hidden="true"></div>
+
+      <div class="quiz-head">
+        <p class="quiz-counter"><span id="q-current">1</span> / <span id="q-total">50</span></p>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <h2 id="q-text" class="quiz-question">Carregando…</h2>
+
+      <div class="quiz-options" id="q-options" role="group" aria-label="Opções de resposta">
+        <button class="opt-btn" data-value="2" type="button">Concordo Fortemente</button>
+        <button class="opt-btn" data-value="1" type="button">Concordo</button>
+        <button class="opt-btn" data-value="0" type="button">Neutro</button>
+        <button class="opt-btn" data-value="-1" type="button">Discordo</button>
+        <button class="opt-btn" data-value="-2" type="button">Discordo Fortemente</button>
+      </div>
+
+      <button id="btn-back" class="btn-ghost" type="button">← Pergunta anterior</button>
+    </div>
+  </section>
+
+  <!-- ===================== TELA 3 — RESULTADO ===================== -->
+  <section id="screen-result" class="screen" aria-labelledby="result-title">
+    <div class="frame frame-result">
+      <div class="frame-corner tl" aria-hidden="true"></div>
+      <div class="frame-corner tr" aria-hidden="true"></div>
+      <div class="frame-corner bl" aria-hidden="true"></div>
+      <div class="frame-corner br" aria-hidden="true"></div>
+
+      <p class="eyebrow-seal" aria-hidden="true">✠</p>
+      <p class="result-kicker">Sua posição na Bússola é</p>
+      <h2 id="result-title">—</h2>
+      <p class="result-coords" id="result-coords">X: 0 · Y: 0</p>
+
+      <div class="canvas-frame">
+        <canvas id="compass-canvas" width="640" height="640" role="img" aria-label="Gráfico de dispersão mostrando a posição do usuário e dos papas históricos"></canvas>
+      </div>
+
+      <p class="result-desc" id="result-desc"></p>
+
+      <div class="citation-block citation-church">
+        <p class="citation-label">Voz da Tradição da Igreja</p>
+        <p class="citation-text" id="result-church-quote"></p>
+        <p class="citation-source" id="result-church-source"></p>
+      </div>
+
+      <div class="citation-block citation-pope">
+        <p class="citation-label">O Papa mais próximo de você</p>
+        <h3 id="result-pope-name">—</h3>
+        <p class="result-pope-years" id="result-pope-years"></p>
+        <p class="citation-text" id="result-pope-quote"></p>
+        <p class="citation-source">Distância euclidiana: <span id="result-pope-distance"></span></p>
+      </div>
+
+      <div class="result-actions">
+        <button id="btn-restart" class="btn-primary" type="button">Refazer o Exame</button>
+        <button id="btn-share" class="btn-ghost" type="button">Copiar resultado</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
